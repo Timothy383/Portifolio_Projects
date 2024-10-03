@@ -5,16 +5,13 @@ FROM PortifolioProject..CovidDeaths
 ORDER BY 3, 4
 
 
-
 --Showing CovidVaccination table
 SELECT *
 FROM PortifolioProject..CovidVaccinations
 ORDER BY 3, 4
 
 
-
 --Selecting data that i will be using
-
 SELECT Location, date, total_cases, new_cases, total_deaths, population
 FROM PortifolioProject..CovidDeaths
 WHERE continent is NOT NULL
@@ -24,7 +21,7 @@ ORDER BY 1, 2
 
 --Looking at total cases vs total deaths
 --Likelihood of dying if contract Covid in your country
-
+	
 SELECT Location, date, total_cases, total_deaths, (total_deaths/total_cases)*100 AS Death_Percentage
 FROM PortifolioProject..CovidDeaths
 WHERE Location LIKE '%china%' 
@@ -40,8 +37,6 @@ SELECT Location, date, population, total_cases, (total_cases/population)*100 AS 
 FROM PortifolioProject..CovidDeaths
 WHERE continent is NOT NULL
 ORDER BY 1, 2
-
-
 
 
 --Looking at countries with highest infection rate
@@ -65,7 +60,6 @@ ORDER BY Total_Death_Count DESC
 
 
 
-
 --Showing the continent with Highest deaths count per population
 
 SELECT continent, MAX(cast (total_deaths as int)) AS Total_Death_Count
@@ -73,7 +67,6 @@ FROM PortifolioProject..CovidDeaths
 WHERE continent is NOT NULL
 GROUP BY continent
 ORDER BY Total_Death_Count DESC
-
 
 
 
@@ -88,7 +81,6 @@ ORDER BY 1, 2
 
 
 
-
 --Global numbers 
 
 SELECT SUM(new_cases) AS Total_cases, SUM(cast(new_deaths as int)) AS Total_deaths, 
@@ -96,7 +88,6 @@ SUM(cast(new_deaths as int))/ SUM(new_cases)*100 AS DeathPercentage
 FROM PortifolioProject..CovidDeaths
 WHERE continent is NOT NULL
 ORDER BY 1, 2
-
 
 
 
@@ -119,7 +110,6 @@ WHERE dea.continent is NOT NULL
 )
 SELECT *, (Rolling_people_vaccinated/population)*100 AS Rolling_people_vaccinated_percetage
 FROM Pop_vs_Vac
-
 
 
 
@@ -150,7 +140,6 @@ WHERE dea.continent is NOT NULL
 --ORDER BY 1, 2, 3
 SELECT *, (Rolling_people_vaccinated/Population)*100 AS Rolling_people_vaccinated_percetage
 FROM #PercentPopulationVaccinated
-
 
 
 
